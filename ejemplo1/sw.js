@@ -13,19 +13,19 @@ const urlsToCache = [//lista de archivos a cachear
 
 //2. Evento INSTALL -> se ejecuta al instalar el servie worker, se cachean
 // (se meten a cache) los recursos base de la PWA
-self.addEventListener("install", event => {
-    console.log("Service Worker: Instalando...");
+self.addEventListener('install', event => {
+    console.log("Service Worker: instalando...");
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            console.log("Archivos cacheados");
-            cache.addAll(urlsToCache)
+            console.log("Archivos cacheados...");
+            return cache.addAll(urlsToCache)
         })
     );
 });
 
 //3. Evento ACTIVATE -> se ejecuta al activar el service worker y necesito limpiar
 // caches antiguos, para mantener version actual 
-self.addEventListener("activate", event => {
+self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => 
             Promise.all(
@@ -40,7 +40,7 @@ self.addEventListener("activate", event => {
 // Intercepta cada peticion de la PWA. 
 // Busca primero en cache y si no esta busca en internet
 // En caso de falla muestra la pagina offline.html
-self.addEventListener("fetch", event => {
+self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(response => {
             return response || fetch(event.request).catch (() => caches.match("offline.html"))
@@ -50,7 +50,7 @@ self.addEventListener("fetch", event => {
 
 //5. Evento PUSH -> notificaciones en segundo plano
 // manejo de notificaciones push (opcioonnal)
-self.addEventListener("push", event => {
+self.addEventListener('push', event => {
     const data = event.data ? event.data.text() : "Notificacion sin texto";
     event.waitUntil(
         self.registration.showNotification("Mi PWA" , {body: data})
