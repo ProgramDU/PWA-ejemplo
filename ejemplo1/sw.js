@@ -1,6 +1,6 @@
 //1. Nombre del service worker y los archivos a cachear
 const CACHE_NAME = "mi-cache";
-const BASE_PATH = "PWA-ejemplo/" //sustituir nombre real de la PWA
+const BASE_PATH = "/PWA-ejemplo/"; //sustituir nombre real de la PWA
 const urlsToCache = [//lista de archivos a cachear
     `${BASE_PATH}index.html`,
     `${BASE_PATH}manifest.json`,
