@@ -5,8 +5,8 @@ const CACHE_NAME= "mi-cache";
 const BASE_PATH= "/PWA-ejemplo/"; 
 const urlsToCache = [
     `${BASE_PATH}index.html`,
-    `${BASE_PATH}style.css`,
-    `${BASE_PATH}login.html`,
+    `${BASE_PATH}styles.css`,
+    // `${BASE_PATH}login.html`,
     `${BASE_PATH}manifest.json`,
     `${BASE_PATH}offline.html`,
     `${BASE_PATH}icons/logox192.png`,
